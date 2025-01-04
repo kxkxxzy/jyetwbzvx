@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apps Library</title>
+    <title>Библиотека приложений</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,6 +20,7 @@
         header h1 {
             margin: 0;
             font-size: 2em;
+            cursor: pointer;
         }
         .app-container {
             display: flex;
@@ -31,8 +32,8 @@
         }
         .app-button {
             position: relative;
-            width: 200px;
-            height: 200px;
+            width: 150px;
+            height: 150px;
             border-radius: 10px;
             overflow: hidden;
             cursor: pointer;
@@ -60,33 +61,166 @@
             font-size: 1em;
             font-weight: bold;
         }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            animation: fadeIn 0.3s forwards;
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+                pointer-events: auto;
+            }
+        }
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes slideOut {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+        }
+        .modal-content {
+            background: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            max-width: 600px;
+            text-align: left;
+            position: relative;
+            width: 80%;
+            opacity: 0;
+            animation: slideIn 0.5s forwards;
+        }
+        
+        @media (max-width: 600px) {
+    .modal-content {
+        width: 85%; /* Уменьшаем ширину модального окна */
+        padding: 20px;
+    }
+}
+        .modal-content h2 {
+            margin-top: 0;
+            font-size: 1.6em;
+        }
+        .modal-content p {
+            margin: 15px 0;
+            font-size: 1.2em;
+        }
+        .modal-content .separator {
+            margin: 20px 0;
+            border-top: 1px solid #ddd;
+        }
+        .modal-content .download-button {
+            background-color: #6200ea;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Apps Library</h1>
+        <h1 onclick="showModal('ух пизда', 'Чёрт побери какой же я красавчик', '')">Библиотека приложений</h1>
     </header>
     <div class="app-container">
-        <a href="https://play.google.com/store/apps/details?id=com.lemon.lvoverseas" class="app-button" target="_blank">
+        <!-- Кнопки приложений -->
+        <div class="app-button" onclick="showModal('CapCut - Video Editor', 'CapCut — бесплатный универсальный инструмент для редактирования видео. В нем есть все необходимое для создания высококачественных, визуально привлекательных видео и графики.', 'https://play.google.com/store/apps/details?id=com.lemon.lvoverseas')">
             <img src="https://play-lh.googleusercontent.com/TboWHJSxfDDVO72JU3HBId_OLCykyegcwanp4EAz-IkJGwtIrQRTt1DKlm_BbxwD_C1t=w480-h960-rw" alt="capcut">
             <div class="overlay"></div>
             <div class="title">CapCut</div>
-        </a>
-        <!--<a href="https://example.com/app2" class="app-button" target="_blank">
-            <img src="https://via.placeholder.com/200x200.png?text=App+2" alt="Приложение 2">
+        </div>
+        <div class="app-button" onclick="showModal('URLCheck', 'Позволяет анализировать URL (или делиться ими) перед тем как их открыть.', 'https://play.google.com/store/apps/details?id=com.trianguloy.urlchecker')">
+            <img src="https://play-lh.googleusercontent.com/dpgdeRv0YWMvUWO3oIPFY-1qAyy_3EcBrwE5GwygVoDLgw4_iXagoCPuPx3d2ugl44ZE=w480-h960-rw" alt="urlcheck">
             <div class="overlay"></div>
-            <div class="title">Приложение 2</div>
-        </a>
-        <a href="https://example.com/app3" class="app-button" target="_blank">
-            <img src="https://via.placeholder.com/200x200.png?text=App+3" alt="Приложение 3">
+            <div class="title">URLCheck</div>
+        </div>
+        <div class="app-button" onclick="showModal('AyuGram', 'AyuGram — клиент Telegram с режимом призрака и историей сообщений.', 'https://t.me/ayugramchat')">
+            <img src="https://avatars.githubusercontent.com/u/131606289?s=200&v=4" alt="ayugram">
             <div class="overlay"></div>
-            <div class="title">Приложение 3</div>
-        </a>
-        <a href="https://example.com/app4" class="app-button" target="_blank">
-            <img src="https://via.placeholder.com/200x200.png?text=App+4" alt="Приложение 4">
+            <div class="title">AyuGram</div>
+        </div>
+        <div class="app-button" onclick="showModal('ExteraGram', 'ExteraGram — Экспериментальный сторонний клиент Telegram на основе Telegram API.', 'https://github.com/exteraSquad/exteraGram/releases/latest')">
+            <img src="https://static.rustore.ru/imgproxy/0zf7VdgrMRrecUGTls_no40nj6LsR0wWvPa0MMznfzE/preset:app_list_icon/aHR0cHM6Ly9zdGF0aWMucnVzdG9yZS5ydS9hcGsvMzA1NDg0NzM1L2NvbnRlbnQvSUNPTi8wYzUyMDFiNS02MjAxLTRhMDEtOTczMC1hMjY4ZWFkN2QwZDIuanBn.webp" alt="exteragram">
             <div class="overlay"></div>
-            <div class="title">Приложение 4</div>
-        </a>-->
+            <div class="title">ExteraGram</div>
+        </div>
     </div>
+
+    <!-- Модальное окно -->
+    <div class="modal" id="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h2 id="modal-title"></h2>
+            <p id="modal-description"></p>
+            <div class="separator"></div>
+            <a id="modal-download" class="download-button" href="#" target="_blank">Скачать</a>
+        </div>
+    </div>
+
+    <script>
+        function showModal(title, description, downloadLink) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-description').textContent = description;
+            const downloadButton = document.getElementById('modal-download');
+
+            if (downloadLink) {
+                downloadButton.href = downloadLink;
+                downloadButton.style.display = 'inline-block';  // Показываем кнопку
+            } else {
+                downloadButton.style.display = 'none';  // Скрываем кнопку
+            }
+
+            const modal = document.getElementById('modal');
+            modal.style.display = 'flex';
+            modal.style.animation = 'fadeIn 0.15s forwards';
+            document.querySelector('.modal-content').style.animation = 'slideIn 0.25s forwards';
+        }
+
+        function closeModal(event) {
+            if (event && event.target === document.getElementById('modal')) {
+                const modal = document.getElementById('modal');
+                modal.style.animation = 'fadeOut 0.15s forwards';  // Анимация для фона
+                document.querySelector('.modal-content').style.animation = 'slideOut 0.25s forwards';  // Анимация для контента
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 250);  // Убираем окно после анимации
+            }
+        }
+    </script>
 </body>
 </html>
