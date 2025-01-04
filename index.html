@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apps Library</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            text-align: center;
+        }
+        header {
+            background-color: #6200ea;
+            color: #fff;
+            padding: 20px 0;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .app-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px auto;
+            max-width: 900px;
+            gap: 20px;
+        }
+        .app-button {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .app-button img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .app-button .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+        }
+        .app-button .title {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: #fff;
+            font-size: 1em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Apps Library</h1>
+    </header>
+    <div class="app-container">
+        <a href="https://play.google.com/store/apps/details?id=com.lemon.lvoverseas" class="app-button" target="_blank">
+            <img src="https://play-lh.googleusercontent.com/TboWHJSxfDDVO72JU3HBId_OLCykyegcwanp4EAz-IkJGwtIrQRTt1DKlm_BbxwD_C1t=w480-h960-rw" alt="capcut">
+            <div class="overlay"></div>
+            <div class="title">CapCut</div>
+        </a>
+        <!--<a href="https://example.com/app2" class="app-button" target="_blank">
+            <img src="https://via.placeholder.com/200x200.png?text=App+2" alt="Приложение 2">
+            <div class="overlay"></div>
+            <div class="title">Приложение 2</div>
+        </a>
+        <a href="https://example.com/app3" class="app-button" target="_blank">
+            <img src="https://via.placeholder.com/200x200.png?text=App+3" alt="Приложение 3">
+            <div class="overlay"></div>
+            <div class="title">Приложение 3</div>
+        </a>
+        <a href="https://example.com/app4" class="app-button" target="_blank">
+            <img src="https://via.placeholder.com/200x200.png?text=App+4" alt="Приложение 4">
+            <div class="overlay"></div>
+            <div class="title">Приложение 4</div>
+        </a>-->
+    </div>
+</body>
+</html>
